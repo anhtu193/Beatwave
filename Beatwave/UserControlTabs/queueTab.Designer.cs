@@ -43,11 +43,11 @@
             // 
             // queueTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.label1);
             this.Name = "queueTab";
-            this.Size = new System.Drawing.Size(1230, 966);
+            this.Size = new System.Drawing.Size(1270, 738);
             this.ResumeLayout(false);
             this.PerformLayout();
 

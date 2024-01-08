@@ -63,6 +63,16 @@ namespace Beatwave.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap high_volume {
+            get {
+                object obj = ResourceManager.GetObject("high-volume", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap home_selected {
             get {
                 object obj = ResourceManager.GetObject("home_selected", resourceCulture);
@@ -103,9 +113,29 @@ namespace Beatwave.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap low_volume {
+            get {
+                object obj = ResourceManager.GetObject("low-volume", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap next {
             get {
                 object obj = ResourceManager.GetObject("next", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap obito {
+            get {
+                object obj = ResourceManager.GetObject("obito", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -236,6 +266,16 @@ namespace Beatwave.Properties {
         internal static System.Drawing.Bitmap shuffle {
             get {
                 object obj = ResourceManager.GetObject("shuffle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap volume_mute {
+            get {
+                object obj = ResourceManager.GetObject("volume-mute", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

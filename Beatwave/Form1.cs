@@ -12,6 +12,7 @@ using ComponentFactory.Krypton.Toolkit;
 
 namespace Beatwave
 {
+
     public partial class MainForm : KryptonForm
     {
         NavigationControl navigationControl;
@@ -23,6 +24,7 @@ namespace Beatwave
         bool isPlaying;
         bool isDisplayingQueueTab;
         int displayingTab;
+        int playmode; //0: repeat, 1: repeat once, 2: shuffle
         public MainForm()
         {
             InitializeComponent();
@@ -44,15 +46,38 @@ namespace Beatwave
                 play_button.Image = Properties.Resources.pause;
             }
             btn_queue.Image = Properties.Resources.playlist;
+            playmode = 0;
+            btn_playmode.Image = Properties.Resources.repeat;
         }
 
         private void InitializeNavigationControl()
         {
+            homeTab HomeTab = new homeTab();
+            HomeTab.MusicItemSelected += HomeTab_MusicItemSelected; // Đăng ký sự kiện từ homeTab
             List<UserControl> tabList = new List<UserControl>()
-            { new homeTab(), new searchTab(), new playlistTab(), new queueTab()};
+            { HomeTab, new searchTab(), new playlistTab(), new queueTab()};
             navigationControl = new NavigationControl(tabList, mainscreen_panel);
             navigationControl.Display(0);
             displayingTab = 0;
+        }
+
+        private void HomeTab_MusicItemSelected(object sender, string songPath)
+        {
+            PlayMusic(songPath);
+        }
+
+        public void PlayMusic(string songPath)
+        {
+            if (System.IO.File.Exists(songPath))
+            {
+                // Phát nhạc từ đường dẫn đã chọn
+                player.URL = songPath;
+                player.Ctlcontrols.play();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy tập tin âm thanh!");
+            }
         }
 
         private void lb_home_Click(object sender, EventArgs e)
@@ -124,6 +149,31 @@ namespace Beatwave
                 navigationControl.Display(3);
                 navigationButton.highlight(label1);
             }
+        }
+
+        private void btn_playmode_Click(object sender, EventArgs e)
+        {
+            playmode++;
+            if (playmode > 2) playmode = 0;
+            if (playmode == 0)
+            {
+                btn_playmode.Image = Properties.Resources.repeat;
+            }
+            if (playmode == 1)
+            {
+                btn_playmode.Image = Properties.Resources.repeat_once;
+            }
+            if (playmode == 2)
+            {
+                btn_playmode.Image = Properties.Resources.shuffle;
+            }
+        }
+
+        private void slider_volume_ValueChanged(object sender, Utilities.BunifuSlider.BunifuHScrollBar.ValueChangedEventArgs e)
+        {
+            if (slider_volume.Value == 0) ptb_volume.Image = Properties.Resources.volume_mute;
+            if (slider_volume.Value <= 50 && slider_volume.Value > 0) ptb_volume.Image = Properties.Resources.low_volume;
+            if (slider_volume.Value > 50 && slider_volume.Value <= 100) ptb_volume.Image = Properties.Resources.high_volume;
         }
     }
 }
