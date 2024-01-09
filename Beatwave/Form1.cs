@@ -79,6 +79,8 @@ namespace Beatwave
                 Mp3Reader mp3Reader = new Mp3Reader();
                 SongInfo songInfo = mp3Reader.GetSongInfo(songPath);
                 string durationString = songInfo.Duration.ToString(@"mm\:ss");
+                TimeSpan songDuration = songInfo.Duration;
+                slider.Maximum = (int)songDuration.TotalSeconds;
                 lb_duration.Text = durationString;
                 timer1.Start();
             }
