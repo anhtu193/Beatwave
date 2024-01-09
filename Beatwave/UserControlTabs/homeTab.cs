@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +18,80 @@ namespace Beatwave.UserControlTabs
     {
         List<SongInfo> songsInfo;
         public event EventHandler<string> MusicItemSelected;
+        bool isPlaying = false;
+        private int rotationAngle = 0;
+        private Timer rotationTimer;
+        private Bitmap originalImage; // Lưu trữ ảnh gốc
+        private Bitmap rotatedImage;
+        private int lastStoppedAngle = 0;
+
         public homeTab()
         {
             InitializeComponent();
             loadSongs();
             DisplayMusicItems();
+            InitializePlayingSongItem();
+        }
+
+        private void InitializePlayingSongItem()
+        {
+            playing_cover.BorderRadius = 110;
+            if (isPlaying == false) label3.Visible = false;
+            rotationTimer = new Timer();
+            rotationTimer.Interval = 30; // Thay đổi tốc độ quay ở đây
+            rotationTimer.Tick += RotationTimer_Tick;    
+        }
+
+        private void RotationTimer_Tick(object sender, EventArgs e)
+        {
+            rotationAngle += 1;
+            RotateImage(rotationAngle);
+            playing_cover.Image = (Image)rotatedImage.Clone();
+        }
+
+        public void UpdatePlayingState(bool newIsPlayingState)
+        {
+            isPlaying = newIsPlayingState;
+
+            if (isPlaying == false)
+            {
+                label3.Visible = false;
+                StopRotation();
+            }
+            else
+            {
+                label3.Visible = true;
+                StartRotation();
+            }
+        }
+
+        private void RotateImage(float angle)
+        {
+            // Tạo một bitmap mới để xoay ảnh
+            rotatedImage = new Bitmap(originalImage.Width, originalImage.Height);
+
+            using (Graphics g = Graphics.FromImage(rotatedImage))
+            {
+                g.Clear(Color.Transparent); // Xóa ảnh để vẽ ảnh mới
+
+                g.TranslateTransform(originalImage.Width / 2, originalImage.Height / 2);
+                g.RotateTransform(angle);
+                g.TranslateTransform(-originalImage.Width / 2, -originalImage.Height / 2);
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(originalImage, new Rectangle(0, 0, originalImage.Width, originalImage.Height), 0, 0, originalImage.Width, originalImage.Height, GraphicsUnit.Pixel);
+            }
+        }
+
+        private void StartRotation()
+        {
+            rotationAngle = lastStoppedAngle;
+            rotationTimer.Start();
+        }
+
+        private void StopRotation()
+        {
+            lastStoppedAngle = rotationAngle;
+            rotationTimer.Stop();
         }
 
         private void DisplayMusicItems()
@@ -51,12 +121,36 @@ namespace Beatwave.UserControlTabs
 
         protected virtual void OnMusicItemSelected(object sender, string songPath)
         {
+            
             MusicItemSelected?.Invoke(sender, songPath);
+            SongInfo songPlaying;
+            Mp3Reader mp3Reader = new Mp3Reader();
+            songPlaying = mp3Reader.GetSongInfo(songPath);
+            if (songPlaying.Cover != null && songPlaying.Cover.Length > 0)
+            {
+                using (MemoryStream ms = new MemoryStream(songPlaying.Cover))
+                {
+                    Image image = Image.FromStream(ms);                  
+                    playing_cover.Image = image;
+                }
+            }
+            originalImage = new Bitmap(playing_cover.Image);
+            playing_title.Text = songPlaying.Title;
+            string durationString = songPlaying.Duration.ToString(@"mm\:ss");
+            playing_artist_duration.Text = songPlaying.Artist + " • " + durationString;
+            isPlaying = true;
+            if (isPlaying == true)
+            {
+                label3.Visible = true;
+                playing_cover.BorderRadius = 110; // Đặt borderRadius để làm hình tròn
+                rotationAngle = 0;
+                rotationTimer.Start(); // Bắt đầu quay hình ảnh
+            }
         }
 
         private void home_panel_Paint(object sender, PaintEventArgs e)
         {
-            Color color1 = Color.FromArgb(18, 18, 18);
+            Color color1 = Color.FromArgb(74, 74, 74);
             Color color2 = Color.FromArgb(0, 0, 0);
 
             LinearGradientBrush brush = new LinearGradientBrush(
@@ -75,6 +169,11 @@ namespace Beatwave.UserControlTabs
             string folderPath = @"E:\testMusic";
             Mp3Reader mp3Reader = new Mp3Reader();
             songsInfo = mp3Reader.GetSongsInfo(folderPath);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            StopRotation();
         }
     }
 }

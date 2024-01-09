@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.player_panel = new System.Windows.Forms.Panel();
+            this.slider = new Bunifu.UI.WinForms.BunifuHSlider();
             this.player = new AxWMPLib.AxWindowsMediaPlayer();
             this.slider_volume = new Bunifu.UI.WinForms.BunifuHSlider();
             this.ptb_volume = new Bunifu.UI.WinForms.BunifuPictureBox();
@@ -40,7 +42,6 @@
             this.btn_queue = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.btn_next = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.play_button = new Bunifu.UI.WinForms.BunifuPictureBox();
-            this.bunifuHSlider1 = new Bunifu.UI.WinForms.BunifuHSlider();
             this.navigation_panel = new System.Windows.Forms.Panel();
             this.ptb_playlist = new System.Windows.Forms.PictureBox();
             this.ptb_search = new System.Windows.Forms.PictureBox();
@@ -52,6 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mainscreen_panel = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.player_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_volume)).BeginInit();
@@ -71,6 +73,7 @@
             // player_panel
             // 
             this.player_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.player_panel.Controls.Add(this.slider);
             this.player_panel.Controls.Add(this.player);
             this.player_panel.Controls.Add(this.slider_volume);
             this.player_panel.Controls.Add(this.ptb_volume);
@@ -81,12 +84,60 @@
             this.player_panel.Controls.Add(this.btn_queue);
             this.player_panel.Controls.Add(this.btn_next);
             this.player_panel.Controls.Add(this.play_button);
-            this.player_panel.Controls.Add(this.bunifuHSlider1);
             this.player_panel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.player_panel.Location = new System.Drawing.Point(0, 946);
             this.player_panel.Name = "player_panel";
             this.player_panel.Size = new System.Drawing.Size(1924, 109);
             this.player_panel.TabIndex = 0;
+            // 
+            // slider
+            // 
+            this.slider.AllowCursorChanges = true;
+            this.slider.AllowHomeEndKeysDetection = false;
+            this.slider.AllowIncrementalClickMoves = true;
+            this.slider.AllowMouseDownEffects = false;
+            this.slider.AllowMouseHoverEffects = false;
+            this.slider.AllowScrollingAnimations = true;
+            this.slider.AllowScrollKeysDetection = true;
+            this.slider.AllowScrollOptionsMenu = true;
+            this.slider.AllowShrinkingOnFocusLost = false;
+            this.slider.BackColor = System.Drawing.Color.Transparent;
+            this.slider.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("slider.BackgroundImage")));
+            this.slider.BindingContainer = null;
+            this.slider.BorderRadius = 2;
+            this.slider.BorderThickness = 1;
+            this.slider.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.slider.DrawThickBorder = false;
+            this.slider.DurationBeforeShrink = 2000;
+            this.slider.ElapsedColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(223)))), ((int)(((byte)(100)))));
+            this.slider.LargeChange = 10;
+            this.slider.Location = new System.Drawing.Point(504, 73);
+            this.slider.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.slider.Maximum = 100;
+            this.slider.Minimum = 0;
+            this.slider.MinimumSize = new System.Drawing.Size(0, 31);
+            this.slider.MinimumThumbLength = 18;
+            this.slider.Name = "slider";
+            this.slider.OnDisable.ScrollBarBorderColor = System.Drawing.Color.Silver;
+            this.slider.OnDisable.ScrollBarColor = System.Drawing.Color.Transparent;
+            this.slider.OnDisable.ThumbColor = System.Drawing.Color.Silver;
+            this.slider.ScrollBarBorderColor = System.Drawing.Color.White;
+            this.slider.ScrollBarColor = System.Drawing.Color.White;
+            this.slider.ShrinkSizeLimit = 3;
+            this.slider.Size = new System.Drawing.Size(552, 31);
+            this.slider.SliderColor = System.Drawing.Color.White;
+            this.slider.SliderStyle = Bunifu.UI.WinForms.BunifuHSlider.SliderStyles.Thin;
+            this.slider.SliderThumbStyle = Utilities.BunifuSlider.BunifuHScrollBar.SliderThumbStyles.Circular;
+            this.slider.SmallChange = 1;
+            this.slider.TabIndex = 0;
+            this.slider.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(223)))), ((int)(((byte)(100)))));
+            this.slider.ThumbFillColor = System.Drawing.Color.Black;
+            this.slider.ThumbLength = 54;
+            this.slider.ThumbMargin = 1;
+            this.slider.ThumbSize = Bunifu.UI.WinForms.BunifuHSlider.ThumbSizes.Small;
+            this.slider.ThumbStyle = Bunifu.UI.WinForms.BunifuHSlider.ThumbStyles.Fill;
+            this.slider.Value = 0;
+            this.slider.Click += new System.EventHandler(this.slider_Click_1);
             // 
             // player
             // 
@@ -168,22 +219,22 @@
             this.lb_playtime.AutoSize = true;
             this.lb_playtime.Font = new System.Drawing.Font("Nunito", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_playtime.ForeColor = System.Drawing.Color.White;
-            this.lb_playtime.Location = new System.Drawing.Point(477, 78);
+            this.lb_playtime.Location = new System.Drawing.Point(451, 77);
             this.lb_playtime.Name = "lb_playtime";
-            this.lb_playtime.Size = new System.Drawing.Size(40, 20);
+            this.lb_playtime.Size = new System.Drawing.Size(49, 20);
             this.lb_playtime.TabIndex = 3;
-            this.lb_playtime.Text = "0:00";
+            this.lb_playtime.Text = "00:00";
             // 
             // lb_duration
             // 
             this.lb_duration.AutoSize = true;
             this.lb_duration.Font = new System.Drawing.Font("Nunito", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_duration.ForeColor = System.Drawing.Color.White;
-            this.lb_duration.Location = new System.Drawing.Point(1081, 77);
+            this.lb_duration.Location = new System.Drawing.Point(1062, 76);
             this.lb_duration.Name = "lb_duration";
-            this.lb_duration.Size = new System.Drawing.Size(40, 20);
+            this.lb_duration.Size = new System.Drawing.Size(49, 20);
             this.lb_duration.TabIndex = 2;
-            this.lb_duration.Text = "2:54";
+            this.lb_duration.Text = "00:00";
             // 
             // btn_previous
             // 
@@ -267,55 +318,7 @@
             this.play_button.TabIndex = 0;
             this.play_button.TabStop = false;
             this.play_button.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Circle;
-            this.play_button.Click += new System.EventHandler(this.bunifuPictureBox1_Click);
-            // 
-            // bunifuHSlider1
-            // 
-            this.bunifuHSlider1.AllowCursorChanges = true;
-            this.bunifuHSlider1.AllowHomeEndKeysDetection = false;
-            this.bunifuHSlider1.AllowIncrementalClickMoves = true;
-            this.bunifuHSlider1.AllowMouseDownEffects = false;
-            this.bunifuHSlider1.AllowMouseHoverEffects = false;
-            this.bunifuHSlider1.AllowScrollingAnimations = true;
-            this.bunifuHSlider1.AllowScrollKeysDetection = true;
-            this.bunifuHSlider1.AllowScrollOptionsMenu = true;
-            this.bunifuHSlider1.AllowShrinkingOnFocusLost = false;
-            this.bunifuHSlider1.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuHSlider1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuHSlider1.BackgroundImage")));
-            this.bunifuHSlider1.BindingContainer = null;
-            this.bunifuHSlider1.BorderRadius = 2;
-            this.bunifuHSlider1.BorderThickness = 1;
-            this.bunifuHSlider1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuHSlider1.DrawThickBorder = false;
-            this.bunifuHSlider1.DurationBeforeShrink = 2000;
-            this.bunifuHSlider1.ElapsedColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(223)))), ((int)(((byte)(100)))));
-            this.bunifuHSlider1.LargeChange = 10;
-            this.bunifuHSlider1.Location = new System.Drawing.Point(522, 73);
-            this.bunifuHSlider1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.bunifuHSlider1.Maximum = 100;
-            this.bunifuHSlider1.Minimum = 0;
-            this.bunifuHSlider1.MinimumSize = new System.Drawing.Size(0, 31);
-            this.bunifuHSlider1.MinimumThumbLength = 18;
-            this.bunifuHSlider1.Name = "bunifuHSlider1";
-            this.bunifuHSlider1.OnDisable.ScrollBarBorderColor = System.Drawing.Color.Silver;
-            this.bunifuHSlider1.OnDisable.ScrollBarColor = System.Drawing.Color.Transparent;
-            this.bunifuHSlider1.OnDisable.ThumbColor = System.Drawing.Color.Silver;
-            this.bunifuHSlider1.ScrollBarBorderColor = System.Drawing.Color.White;
-            this.bunifuHSlider1.ScrollBarColor = System.Drawing.Color.White;
-            this.bunifuHSlider1.ShrinkSizeLimit = 3;
-            this.bunifuHSlider1.Size = new System.Drawing.Size(552, 31);
-            this.bunifuHSlider1.SliderColor = System.Drawing.Color.White;
-            this.bunifuHSlider1.SliderStyle = Bunifu.UI.WinForms.BunifuHSlider.SliderStyles.Thin;
-            this.bunifuHSlider1.SliderThumbStyle = Utilities.BunifuSlider.BunifuHScrollBar.SliderThumbStyles.Circular;
-            this.bunifuHSlider1.SmallChange = 1;
-            this.bunifuHSlider1.TabIndex = 0;
-            this.bunifuHSlider1.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(223)))), ((int)(((byte)(100)))));
-            this.bunifuHSlider1.ThumbFillColor = System.Drawing.Color.Black;
-            this.bunifuHSlider1.ThumbLength = 54;
-            this.bunifuHSlider1.ThumbMargin = 1;
-            this.bunifuHSlider1.ThumbSize = Bunifu.UI.WinForms.BunifuHSlider.ThumbSizes.Small;
-            this.bunifuHSlider1.ThumbStyle = Bunifu.UI.WinForms.BunifuHSlider.ThumbStyles.Fill;
-            this.bunifuHSlider1.Value = 0;
+            this.play_button.Click += new System.EventHandler(this.play_button_Click);
             // 
             // navigation_panel
             // 
@@ -455,6 +458,11 @@
             this.mainscreen_panel.Size = new System.Drawing.Size(1657, 946);
             this.mainscreen_panel.TabIndex = 2;
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -503,7 +511,7 @@
         private System.Windows.Forms.PictureBox ptb_home;
         private System.Windows.Forms.Label lb_playlist;
         private System.Windows.Forms.PictureBox ptb_playlist;
-        private Bunifu.UI.WinForms.BunifuHSlider bunifuHSlider1;
+        private Bunifu.UI.WinForms.BunifuHSlider slider;
         private Bunifu.UI.WinForms.BunifuPictureBox play_button;
         private Bunifu.UI.WinForms.BunifuPictureBox btn_next;
         private Bunifu.UI.WinForms.BunifuPictureBox btn_previous;
@@ -514,6 +522,7 @@
         private Bunifu.UI.WinForms.BunifuPictureBox ptb_volume;
         private Bunifu.UI.WinForms.BunifuHSlider slider_volume;
         private AxWMPLib.AxWindowsMediaPlayer player;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

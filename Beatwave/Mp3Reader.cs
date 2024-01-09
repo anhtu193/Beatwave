@@ -41,5 +41,32 @@ namespace Beatwave
 
             return songs;
         }
+
+        public SongInfo GetSongInfo(string songPath)
+        {
+            SongInfo song = null;
+
+            try
+            {
+                using (TagLib.File mp3 = TagLib.File.Create(songPath))
+                {
+                    song = new SongInfo();
+                    song.Title = mp3.Tag.Title;
+                    song.Artist = mp3.Tag.Performers.Length > 0 ? mp3.Tag.Performers[0] : "";
+                    song.Album = mp3.Tag.Album;
+                    song.Cover = mp3.Tag.Pictures.Length > 0 ? mp3.Tag.Pictures[0].Data.Data : null;
+                    song.Duration = mp3.Properties.Duration;
+                    song.Path = songPath;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return song;
+        }
     }
+
+
 }

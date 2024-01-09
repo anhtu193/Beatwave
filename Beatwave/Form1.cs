@@ -25,6 +25,7 @@ namespace Beatwave
         bool isDisplayingQueueTab;
         int displayingTab;
         int playmode; //0: repeat, 1: repeat once, 2: shuffle
+        homeTab HomeTab;
         public MainForm()
         {
             InitializeComponent();
@@ -52,7 +53,7 @@ namespace Beatwave
 
         private void InitializeNavigationControl()
         {
-            homeTab HomeTab = new homeTab();
+            HomeTab = new homeTab();
             HomeTab.MusicItemSelected += HomeTab_MusicItemSelected; // Đăng ký sự kiện từ homeTab
             List<UserControl> tabList = new List<UserControl>()
             { HomeTab, new searchTab(), new playlistTab(), new queueTab()};
@@ -68,11 +69,18 @@ namespace Beatwave
 
         public void PlayMusic(string songPath)
         {
+            isPlaying = true;
+            play_button.Image = Properties.Resources.pause;
             if (System.IO.File.Exists(songPath))
             {
                 // Phát nhạc từ đường dẫn đã chọn
                 player.URL = songPath;
                 player.Ctlcontrols.play();
+                Mp3Reader mp3Reader = new Mp3Reader();
+                SongInfo songInfo = mp3Reader.GetSongInfo(songPath);
+                string durationString = songInfo.Duration.ToString(@"mm\:ss");
+                lb_duration.Text = durationString;
+                timer1.Start();
             }
             else
             {
@@ -110,18 +118,7 @@ namespace Beatwave
             navigationButton.highlight(lb_home);
         }
 
-        private void bunifuPictureBox1_Click(object sender, EventArgs e)
-        {
-            isPlaying = !isPlaying;
-            if (isPlaying == false)
-            {
-                play_button.Image = Properties.Resources.play;
-            }
-            else
-            {
-                play_button.Image = Properties.Resources.pause;
-            }
-        }
+
 
         private void btn_queue_Click(object sender, EventArgs e)
         {
@@ -174,6 +171,54 @@ namespace Beatwave
             if (slider_volume.Value == 0) ptb_volume.Image = Properties.Resources.volume_mute;
             if (slider_volume.Value <= 50 && slider_volume.Value > 0) ptb_volume.Image = Properties.Resources.low_volume;
             if (slider_volume.Value > 50 && slider_volume.Value <= 100) ptb_volume.Image = Properties.Resources.high_volume;
+        }
+
+        private void play_button_Click(object sender, EventArgs e)
+        {
+            isPlaying = !isPlaying;
+            if (isPlaying == false)
+            {
+                play_button.Image = Properties.Resources.play;
+                player.Ctlcontrols.pause();
+            }
+            else
+            {
+                play_button.Image = Properties.Resources.pause;
+                player.Ctlcontrols.play();
+            }
+            HomeTab.UpdatePlayingState(isPlaying);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lb_playtime.Text = player.Ctlcontrols.currentPositionString;
+            slider.Value = (int)player.Ctlcontrols.currentPosition;
+        }
+
+        private void slider_ValueChanged(object sender, Utilities.BunifuSlider.BunifuHScrollBar.ValueChangedEventArgs e)
+        {
+            
+        }
+
+        private void slider_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void slider_ValueChanged_1(object sender, Utilities.BunifuSlider.BunifuHScrollBar.ValueChangedEventArgs e)
+        {
+            int newPosition = slider.Value;
+            player.Ctlcontrols.currentPosition = newPosition;
+        }
+
+        private void slider_Click_1(object sender, EventArgs e)
+        {
+            MouseEventArgs mouseEventArgs = e as MouseEventArgs;
+            if (mouseEventArgs.Button == MouseButtons.Left)
+            {
+                int newPosition = (int)(((float)mouseEventArgs.X / slider.Width) * slider.Maximum);
+                player.Ctlcontrols.currentPosition = newPosition;
+            }
         }
     }
 }
