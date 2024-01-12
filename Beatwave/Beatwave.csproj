@@ -334,6 +334,14 @@
   <ItemGroup>
     <None Include="Resources\obito.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\BeatwaveLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\64a6b0e0740e455bda54f399_Waveform.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\giphy.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -31,18 +31,9 @@ namespace Beatwave.UserControls
         public MusicItem()
         {
             InitializeComponent();
-            this.Click += MusicItem_Click;
         }
 
         public event EventHandler<string> MusicItemSelected;
-
-        private void MusicItem_Click(object sender, EventArgs e)
-        {
-            if (song != null)
-            {
-                MusicItemSelected?.Invoke(this, song.Path);
-            }
-        }
 
         private void MusicItem_Load(object sender, EventArgs e)
         {
@@ -96,6 +87,17 @@ namespace Beatwave.UserControls
             result.Height = (int)(imageSize.Height * scaleFactor);
 
             return result;
+        }
+
+        private void MusicItem_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (song != null)
+                {
+                    MusicItemSelected?.Invoke(this, song.Path);
+                }
+            }
         }
     }
 }

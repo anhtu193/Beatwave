@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.player_panel = new System.Windows.Forms.Panel();
+            this.songArtist = new System.Windows.Forms.Label();
+            this.songTitle = new System.Windows.Forms.Label();
+            this.songCover = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.slider = new Bunifu.UI.WinForms.BunifuHSlider();
             this.player = new AxWMPLib.AxWindowsMediaPlayer();
             this.slider_volume = new Bunifu.UI.WinForms.BunifuHSlider();
@@ -42,6 +45,7 @@
             this.btn_queue = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.btn_next = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.play_button = new Bunifu.UI.WinForms.BunifuPictureBox();
+            this.wavegif = new System.Windows.Forms.PictureBox();
             this.navigation_panel = new System.Windows.Forms.Panel();
             this.ptb_playlist = new System.Windows.Forms.PictureBox();
             this.ptb_search = new System.Windows.Forms.PictureBox();
@@ -55,6 +59,7 @@
             this.mainscreen_panel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.player_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.songCover)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_volume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_previous)).BeginInit();
@@ -62,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_queue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_next)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.play_button)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wavegif)).BeginInit();
             this.navigation_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_playlist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_search)).BeginInit();
@@ -73,6 +79,9 @@
             // player_panel
             // 
             this.player_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.player_panel.Controls.Add(this.songArtist);
+            this.player_panel.Controls.Add(this.songTitle);
+            this.player_panel.Controls.Add(this.songCover);
             this.player_panel.Controls.Add(this.slider);
             this.player_panel.Controls.Add(this.player);
             this.player_panel.Controls.Add(this.slider_volume);
@@ -84,20 +93,57 @@
             this.player_panel.Controls.Add(this.btn_queue);
             this.player_panel.Controls.Add(this.btn_next);
             this.player_panel.Controls.Add(this.play_button);
+            this.player_panel.Controls.Add(this.wavegif);
             this.player_panel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.player_panel.Location = new System.Drawing.Point(0, 946);
             this.player_panel.Name = "player_panel";
             this.player_panel.Size = new System.Drawing.Size(1924, 109);
             this.player_panel.TabIndex = 0;
             // 
+            // songArtist
+            // 
+            this.songArtist.AutoEllipsis = true;
+            this.songArtist.Font = new System.Drawing.Font("Nunito", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.songArtist.ForeColor = System.Drawing.Color.White;
+            this.songArtist.Location = new System.Drawing.Point(117, 41);
+            this.songArtist.Name = "songArtist";
+            this.songArtist.Size = new System.Drawing.Size(217, 28);
+            this.songArtist.TabIndex = 7;
+            // 
+            // songTitle
+            // 
+            this.songTitle.AutoEllipsis = true;
+            this.songTitle.Font = new System.Drawing.Font("Nunito Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.songTitle.ForeColor = System.Drawing.Color.White;
+            this.songTitle.Location = new System.Drawing.Point(117, 10);
+            this.songTitle.Name = "songTitle";
+            this.songTitle.Size = new System.Drawing.Size(217, 28);
+            this.songTitle.TabIndex = 7;
+            // 
+            // songCover
+            // 
+            this.songCover.AllowFocused = false;
+            this.songCover.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.songCover.AutoSizeHeight = true;
+            this.songCover.BorderRadius = 0;
+            this.songCover.Image = global::Beatwave.Properties.Resources.BeatwaveLogo;
+            this.songCover.IsCircle = true;
+            this.songCover.Location = new System.Drawing.Point(204, 10);
+            this.songCover.Name = "songCover";
+            this.songCover.Size = new System.Drawing.Size(87, 87);
+            this.songCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.songCover.TabIndex = 6;
+            this.songCover.TabStop = false;
+            this.songCover.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Square;
+            // 
             // slider
             // 
             this.slider.AllowCursorChanges = true;
             this.slider.AllowHomeEndKeysDetection = false;
-            this.slider.AllowIncrementalClickMoves = true;
+            this.slider.AllowIncrementalClickMoves = false;
             this.slider.AllowMouseDownEffects = false;
             this.slider.AllowMouseHoverEffects = false;
-            this.slider.AllowScrollingAnimations = true;
+            this.slider.AllowScrollingAnimations = false;
             this.slider.AllowScrollKeysDetection = true;
             this.slider.AllowScrollOptionsMenu = true;
             this.slider.AllowShrinkingOnFocusLost = false;
@@ -135,14 +181,14 @@
             this.slider.ThumbLength = 54;
             this.slider.ThumbMargin = 1;
             this.slider.ThumbSize = Bunifu.UI.WinForms.BunifuHSlider.ThumbSizes.Small;
-            this.slider.ThumbStyle = Bunifu.UI.WinForms.BunifuHSlider.ThumbStyles.Fill;
+            this.slider.ThumbStyle = Bunifu.UI.WinForms.BunifuHSlider.ThumbStyles.Outline;
             this.slider.Value = 0;
             this.slider.Click += new System.EventHandler(this.slider_Click_1);
             // 
             // player
             // 
             this.player.Enabled = true;
-            this.player.Location = new System.Drawing.Point(522, 10);
+            this.player.Location = new System.Drawing.Point(20, 25);
             this.player.Name = "player";
             this.player.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("player.OcxState")));
             this.player.Size = new System.Drawing.Size(79, 62);
@@ -320,6 +366,17 @@
             this.play_button.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Circle;
             this.play_button.Click += new System.EventHandler(this.play_button_Click);
             // 
+            // wavegif
+            // 
+            this.wavegif.Image = global::Beatwave.Properties.Resources.giphy;
+            this.wavegif.Location = new System.Drawing.Point(97, 36);
+            this.wavegif.Name = "wavegif";
+            this.wavegif.Size = new System.Drawing.Size(121, 95);
+            this.wavegif.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.wavegif.TabIndex = 8;
+            this.wavegif.TabStop = false;
+            this.wavegif.Visible = false;
+            // 
             // navigation_panel
             // 
             this.navigation_panel.BackColor = System.Drawing.Color.Black;
@@ -433,7 +490,7 @@
             // 
             this.label1.Font = new System.Drawing.Font("Nunito Black", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(223)))), ((int)(((byte)(100)))));
-            this.label1.Location = new System.Drawing.Point(53, 175);
+            this.label1.Location = new System.Drawing.Point(50, 175);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(176, 47);
             this.label1.TabIndex = 1;
@@ -443,7 +500,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Beatwave.Properties.Resources.Rectangle_41;
-            this.pictureBox1.Location = new System.Drawing.Point(20, 32);
+            this.pictureBox1.Location = new System.Drawing.Point(17, 32);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(232, 175);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -480,6 +537,7 @@
             this.Text = "Beatwave";
             this.player_panel.ResumeLayout(false);
             this.player_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.songCover)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_volume)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_previous)).EndInit();
@@ -487,6 +545,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_queue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_next)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.play_button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wavegif)).EndInit();
             this.navigation_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ptb_playlist)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_search)).EndInit();
@@ -523,6 +582,10 @@
         private Bunifu.UI.WinForms.BunifuHSlider slider_volume;
         private AxWMPLib.AxWindowsMediaPlayer player;
         private System.Windows.Forms.Timer timer1;
+        private Bunifu.UI.WinForms.BunifuPictureBox songCover;
+        private System.Windows.Forms.Label songTitle;
+        private System.Windows.Forms.Label songArtist;
+        private System.Windows.Forms.PictureBox wavegif;
     }
 }
 

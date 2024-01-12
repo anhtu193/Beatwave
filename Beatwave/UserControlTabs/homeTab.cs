@@ -18,12 +18,15 @@ namespace Beatwave.UserControlTabs
     {
         List<SongInfo> songsInfo;
         public event EventHandler<string> MusicItemSelected;
+        public event EventHandler<List<SongInfo>> PlaylistUpdated;
         bool isPlaying = false;
         private int rotationAngle = 0;
         private Timer rotationTimer;
         private Bitmap originalImage; // Lưu trữ ảnh gốc
         private Bitmap rotatedImage;
         private int lastStoppedAngle = 0;
+
+        List<SongInfo> homeTabQueue = new List<SongInfo>();
 
         public homeTab()
         {
@@ -32,6 +35,12 @@ namespace Beatwave.UserControlTabs
             DisplayMusicItems();
             InitializePlayingSongItem();
         }
+
+        protected virtual void OnPlaylistUpdated(List<SongInfo> songs)
+        {
+            PlaylistUpdated?.Invoke(this, songs);
+        }
+
 
         private void InitializePlayingSongItem()
         {
@@ -105,23 +114,24 @@ namespace Beatwave.UserControlTabs
                     musicItem.Width = 195; // Đặt chiều rộng của MusicItem tại đây (tuỳ chỉnh cho phù hợp)
                     musicItem.Margin = new Padding(0); // Đặt margin để tạo khoảng trống giữa các MusicItem
                     musicItem.CoverImage.BorderRadius = 20;
-
+                
                     musicItem.MusicItemSelected += MusicItem_MusicItemSelected; // Đăng ký sự kiện
                     // Thêm MusicItem vào FlowLayoutPanel
                     flowLayoutPanel.Controls.Add(musicItem);
                 }
+                
             }
             
         }
 
         private void MusicItem_MusicItemSelected(object sender, string songPath)
         {
-            OnMusicItemSelected(sender, songPath);
+            
+            OnMusicItemSelected(sender, songPath);         
         }
 
         protected virtual void OnMusicItemSelected(object sender, string songPath)
         {
-            
             MusicItemSelected?.Invoke(sender, songPath);
             SongInfo songPlaying;
             Mp3Reader mp3Reader = new Mp3Reader();
@@ -169,11 +179,13 @@ namespace Beatwave.UserControlTabs
             string folderPath = @"E:\testMusic";
             Mp3Reader mp3Reader = new Mp3Reader();
             songsInfo = mp3Reader.GetSongsInfo(folderPath);
+
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void homeTab_Load(object sender, EventArgs e)
         {
-            StopRotation();
+
+            OnPlaylistUpdated(songsInfo);
         }
     }
 }

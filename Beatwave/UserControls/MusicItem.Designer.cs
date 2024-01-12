@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.coverImage = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.lb_title = new System.Windows.Forms.Label();
             this.lb_artist = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.coverImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +51,7 @@
             this.coverImage.TabIndex = 0;
             this.coverImage.TabStop = false;
             this.coverImage.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Square;
-            this.coverImage.Click += new System.EventHandler(this.MusicItem_Click);
+            this.coverImage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MusicItem_MouseClick);
             // 
             // lb_title
             // 
@@ -61,7 +63,7 @@
             this.lb_title.Size = new System.Drawing.Size(192, 28);
             this.lb_title.TabIndex = 1;
             this.lb_title.Text = "Lost";
-            this.lb_title.Click += new System.EventHandler(this.MusicItem_Click);
+            this.lb_title.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MusicItem_MouseClick);
             // 
             // lb_artist
             // 
@@ -72,7 +74,14 @@
             this.lb_artist.Size = new System.Drawing.Size(192, 23);
             this.lb_artist.TabIndex = 2;
             this.lb_artist.Text = "Obito";
-            this.lb_artist.Click += new System.EventHandler(this.MusicItem_Click);
+            this.lb_artist.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MusicItem_MouseClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // MusicItem
             // 
@@ -86,7 +95,7 @@
             this.Name = "MusicItem";
             this.Size = new System.Drawing.Size(195, 262);
             this.Load += new System.EventHandler(this.MusicItem_Load);
-            this.Click += new System.EventHandler(this.MusicItem_Click);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MusicItem_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.coverImage)).EndInit();
             this.ResumeLayout(false);
 
@@ -97,5 +106,6 @@
         private Bunifu.UI.WinForms.BunifuPictureBox coverImage;
         private System.Windows.Forms.Label lb_title;
         private System.Windows.Forms.Label lb_artist;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

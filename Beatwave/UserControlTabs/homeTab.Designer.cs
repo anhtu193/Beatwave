@@ -78,9 +78,9 @@
             this.playing_artist_duration.ForeColor = System.Drawing.Color.White;
             this.playing_artist_duration.Location = new System.Drawing.Point(329, 330);
             this.playing_artist_duration.Name = "playing_artist_duration";
-            this.playing_artist_duration.Size = new System.Drawing.Size(150, 33);
+            this.playing_artist_duration.Size = new System.Drawing.Size(296, 33);
             this.playing_artist_duration.TabIndex = 5;
-            this.playing_artist_duration.Text = "Obito • 2:54";
+            this.playing_artist_duration.Text = "Chọn 1 bài hát để bắt đầu";
             // 
             // playing_title
             // 
@@ -91,7 +91,7 @@
             this.playing_title.Name = "playing_title";
             this.playing_title.Size = new System.Drawing.Size(907, 112);
             this.playing_title.TabIndex = 4;
-            this.playing_title.Text = "Lost";
+            this.playing_title.Text = "Chào mừng đến với Beatwave";
             // 
             // label2
             // 
@@ -110,7 +110,7 @@
             this.playing_cover.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.playing_cover.AutoSizeHeight = false;
             this.playing_cover.BorderRadius = 0;
-            this.playing_cover.Image = global::Beatwave.Properties.Resources.obito;
+            this.playing_cover.Image = global::Beatwave.Properties.Resources.BeatwaveLogo;
             this.playing_cover.IsCircle = false;
             this.playing_cover.Location = new System.Drawing.Point(18, 75);
             this.playing_cover.Name = "playing_cover";
@@ -134,9 +134,9 @@
             // flowLayoutPanel
             // 
             this.flowLayoutPanel.AutoScroll = true;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(3, 425);
+            this.flowLayoutPanel.Location = new System.Drawing.Point(3, 439);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(1264, 281);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(1264, 267);
             this.flowLayoutPanel.TabIndex = 0;
             // 
             // homeTab
@@ -147,6 +147,7 @@
             this.Controls.Add(this.home_panel);
             this.Name = "homeTab";
             this.Size = new System.Drawing.Size(1270, 738);
+            this.Load += new System.EventHandler(this.homeTab_Load);
             this.home_panel.ResumeLayout(false);
             this.home_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playing_cover)).EndInit();
