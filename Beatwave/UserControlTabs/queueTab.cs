@@ -29,6 +29,10 @@ namespace Beatwave.UserControlTabs
             playlist = receivedPlaylist;
         }
 
+        public void ResetSongList()
+        {
+            flowLayoutPanel.Controls.Clear();
+        }
         public void SetCurrentPlayingItem(string songPath)
         {
             if (currentPlayingItem != null)

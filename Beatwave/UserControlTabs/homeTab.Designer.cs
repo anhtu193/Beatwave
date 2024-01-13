@@ -36,8 +36,10 @@
             this.playing_cover = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.noSongLabel = new System.Windows.Forms.Label();
             this.home_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playing_cover)).BeginInit();
+            this.flowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // home_panel
@@ -76,7 +78,7 @@
             this.playing_artist_duration.BackColor = System.Drawing.Color.Transparent;
             this.playing_artist_duration.Font = new System.Drawing.Font("Nunito SemiBold", 14F, System.Drawing.FontStyle.Bold);
             this.playing_artist_duration.ForeColor = System.Drawing.Color.White;
-            this.playing_artist_duration.Location = new System.Drawing.Point(329, 330);
+            this.playing_artist_duration.Location = new System.Drawing.Point(352, 332);
             this.playing_artist_duration.Name = "playing_artist_duration";
             this.playing_artist_duration.Size = new System.Drawing.Size(296, 33);
             this.playing_artist_duration.TabIndex = 5;
@@ -87,7 +89,7 @@
             this.playing_title.AutoEllipsis = true;
             this.playing_title.Font = new System.Drawing.Font("Nunito Black", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playing_title.ForeColor = System.Drawing.Color.White;
-            this.playing_title.Location = new System.Drawing.Point(321, 242);
+            this.playing_title.Location = new System.Drawing.Point(344, 244);
             this.playing_title.Name = "playing_title";
             this.playing_title.Size = new System.Drawing.Size(907, 112);
             this.playing_title.TabIndex = 4;
@@ -112,7 +114,7 @@
             this.playing_cover.BorderRadius = 0;
             this.playing_cover.Image = global::Beatwave.Properties.Resources.BeatwaveLogo;
             this.playing_cover.IsCircle = false;
-            this.playing_cover.Location = new System.Drawing.Point(9, 86);
+            this.playing_cover.Location = new System.Drawing.Point(32, 88);
             this.playing_cover.Name = "playing_cover";
             this.playing_cover.Size = new System.Drawing.Size(286, 286);
             this.playing_cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -134,10 +136,24 @@
             // flowLayoutPanel
             // 
             this.flowLayoutPanel.AutoScroll = true;
+            this.flowLayoutPanel.Controls.Add(this.noSongLabel);
             this.flowLayoutPanel.Location = new System.Drawing.Point(3, 439);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
             this.flowLayoutPanel.Size = new System.Drawing.Size(1264, 267);
             this.flowLayoutPanel.TabIndex = 0;
+            // 
+            // noSongLabel
+            // 
+            this.noSongLabel.Font = new System.Drawing.Font("Nunito", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noSongLabel.ForeColor = System.Drawing.Color.White;
+            this.noSongLabel.Location = new System.Drawing.Point(3, 0);
+            this.noSongLabel.Name = "noSongLabel";
+            this.noSongLabel.Size = new System.Drawing.Size(1245, 256);
+            this.noSongLabel.TabIndex = 7;
+            this.noSongLabel.Text = "Có vẻ như bạn chưa set đường dẫn đến các bài hát của bạn, hãy tiến hành set đường" +
+    " dẫn ở mục Cài đặt bạn nhé!\r\n";
+            this.noSongLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.noSongLabel.Visible = false;
             // 
             // homeTab
             // 
@@ -151,6 +167,7 @@
             this.home_panel.ResumeLayout(false);
             this.home_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playing_cover)).EndInit();
+            this.flowLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -165,5 +182,6 @@
         private System.Windows.Forms.Label playing_title;
         private System.Windows.Forms.Label playing_artist_duration;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label noSongLabel;
     }
 }

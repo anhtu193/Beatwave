@@ -25,13 +25,17 @@ namespace Beatwave.UserControlTabs
         private Bitmap originalImage;
         private Bitmap rotatedImage;
         private int lastStoppedAngle = 0;
-
+        private string folderPath = "";
         public homeTab()
         {
             InitializeComponent();
-            loadSongs();
-            DisplayMusicItems();
+            
             InitializePlayingSongItem();
+        }
+
+        public void UpdateFolderPath(string newFolderPath)
+        {
+            folderPath = newFolderPath;
         }
 
         public void UpdateUI(bool isPlaying, SongInfo songInfo)
@@ -196,17 +200,27 @@ namespace Beatwave.UserControlTabs
             brush.Dispose();
         }
 
-        private void loadSongs()
+        public void loadSongs()
         {
-            string folderPath = @"E:\testMusic";
+            flowLayoutPanel.Controls.Clear();
             Mp3Reader mp3Reader = new Mp3Reader();
             songsInfo = mp3Reader.GetSongsInfo(folderPath);
-
+            if (songsInfo.Count == 0) noSongLabel.Visible = true;
+            else noSongLabel.Visible = false;
+            OnPlaylistUpdated(songsInfo);
+            DisplayMusicItems();
         }
 
+        public void ResetUI()
+        {
+            playing_cover.Image = Properties.Resources.BeatwaveLogo;
+            playing_artist_duration.Text = "Chọn 1 bài hát để bắt đầu";
+            playing_title.Text = "Chào mừng đến với Beatwave";
+
+        }
         private void homeTab_Load(object sender, EventArgs e)
         {
-            OnPlaylistUpdated(songsInfo);
+            noSongLabel.Visible = true;
         }
     }
 }

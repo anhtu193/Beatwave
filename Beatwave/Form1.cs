@@ -29,7 +29,8 @@ namespace Beatwave
         int playmode; //0: repeat, 1: repeat once, 2: shuffle
         homeTab HomeTab;
         queueTab QueueTab;
-        string CurrentPlayngSongPath;
+        settingsTab SettingsTab;
+
         public event EventHandler<string> CurrentSongChanged;
         public MainForm()
         {
@@ -57,7 +58,7 @@ namespace Beatwave
             btn_playmode.Image = Properties.Resources.repeat;
             CurrentSongChanged += HomeTab_MainForm_CurrentSongChanged;
             player.PlayStateChange += player_PlayStateChange;
-            player.settings.setMode("loop", true);
+            //player.settings.setMode("loop", true);
         }
         private void player_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
@@ -84,14 +85,24 @@ namespace Beatwave
         {
             HomeTab = new homeTab();
             QueueTab = new queueTab();
+            SettingsTab = new settingsTab();
             QueueTab.MusicItemSelected += QueueTab_MusicItemSelected;
             HomeTab.PlaylistUpdated += HomeTab_PlaylistUpdated;
-            HomeTab.MusicItemSelected += HomeTab_MusicItemSelected;                
+            HomeTab.MusicItemSelected += HomeTab_MusicItemSelected;      
+            SettingsTab.FolderPathSelected += SettingsTab_FolderPathSelected;
             List<UserControl> tabList = new List<UserControl>()
-            { HomeTab, new searchTab(), new playlistTab(), QueueTab};
+            { HomeTab, new searchTab(), new playlistTab(), QueueTab, SettingsTab};
             navigationControl = new NavigationControl(tabList, mainscreen_panel);
             navigationControl.Display(0);
             displayingTab = 0;          
+        }
+
+        private void SettingsTab_FolderPathSelected(object sender, string selectedFolderPath)
+        {
+            HomeTab.UpdateFolderPath(selectedFolderPath);
+            // Load lại danh sách bài hát trong homeTab
+            HomeTab.loadSongs();
+            ResetUI();
         }
 
         private void HomeTab_MainForm_CurrentSongChanged(object sender, string songPath)
@@ -103,7 +114,9 @@ namespace Beatwave
         private void HomeTab_PlaylistUpdated(object sender, List<SongInfo> songs)
         {
             UpdateQueue(songs);
+            
             QueueTab.SetPlaylist(songs);
+            QueueTab.ResetSongList();
             QueueTab.DisplayMusicItems();
         }
 
@@ -135,6 +148,13 @@ namespace Beatwave
             PlayMusic(songPath);
         }
 
+        private void ResetUI()
+        {
+            songCover.Image = Properties.Resources.BeatwaveLogo;
+            songArtist.Text = "";
+            songTitle.Text = "";
+            HomeTab.ResetUI();
+        }
         public void PlayMusic(string songPath)
         {
             isPlaying = true;
@@ -191,6 +211,8 @@ namespace Beatwave
 
         private void lb_home_Click(object sender, EventArgs e)
         {
+            btn_queue.Image = Properties.Resources.playlist;
+            isDisplayingQueueTab = false;
             navigationControl.Display(0);
             displayingTab = 0;
             navigationButton.highlight(lb_home);
@@ -198,6 +220,8 @@ namespace Beatwave
 
         private void lb_search_Click(object sender, EventArgs e)
         {
+            btn_queue.Image = Properties.Resources.playlist;
+            isDisplayingQueueTab = false;
             navigationControl.Display(1);
             displayingTab = 1;
             navigationButton.highlight(lb_search);
@@ -205,6 +229,8 @@ namespace Beatwave
 
         private void lb_playlist_Click(object sender, EventArgs e)
         {
+            btn_queue.Image = Properties.Resources.playlist;
+            isDisplayingQueueTab = false;
             navigationControl.Display(2);
             displayingTab = 2;
             navigationButton.highlight(lb_playlist);
@@ -212,8 +238,8 @@ namespace Beatwave
 
         private void InitializeNavigationButton()
         {
-            List<Label> tabLabels = new List<Label>() { lb_home, lb_search, lb_playlist };
-            List<PictureBox> tabIcon = new List<PictureBox>() { ptb_home, ptb_search, ptb_playlist };
+            List<Label> tabLabels = new List<Label>() { lb_home, lb_search, lb_playlist, lb_settings };
+            List<PictureBox> tabIcon = new List<PictureBox>() { ptb_home, ptb_search, ptb_playlist, ptb_settings };
 
             navigationButton = new NavigationButton(tabLabels, tabIcon, TabDefaultColor, TabSelectedColor);
             navigationButton.highlight(lb_home);
@@ -239,6 +265,10 @@ namespace Beatwave
                 {
                     navigationButton.highlight(lb_playlist);
                 }
+                if (displayingTab == 4)
+                {
+                    navigationButton.highlight(lb_settings);
+                }
             }
             else
             {
@@ -255,15 +285,17 @@ namespace Beatwave
             if (playmode == 0)
             {
                 btn_playmode.Image = Properties.Resources.repeat;
+                player.settings.setMode("shuffle", false);
             }
             if (playmode == 1)
             {
                 btn_playmode.Image = Properties.Resources.repeat_once;
-                
+                player.settings.setMode("shuffle", false);
             }
             if (playmode == 2)
             {
                 btn_playmode.Image = Properties.Resources.shuffle;
+                player.settings.setMode("shuffle", true);
             }
         }
 
@@ -342,14 +374,20 @@ namespace Beatwave
 
         private void btn_next_Click(object sender, EventArgs e)
         {
-            player.Ctlcontrols.next();
-            UpdateCurrentSongInfo();
+            if (playmode != 1)
+            {
+                player.Ctlcontrols.next();
+                UpdateCurrentSongInfo();
+            }
         }
 
         private void btn_previous_Click(object sender, EventArgs e)
         {
-            player.Ctlcontrols.previous();
-            UpdateCurrentSongInfo();
+            if (playmode != 1)
+            {
+                player.Ctlcontrols.previous();
+                UpdateCurrentSongInfo();
+            }
         }
 
         private void UpdateCurrentSongInfo()
@@ -394,5 +432,13 @@ namespace Beatwave
             }            
         }
 
+        private void lb_settings_Click(object sender, EventArgs e)
+        {
+            isDisplayingQueueTab = false;
+            btn_queue.Image = Properties.Resources.playlist;
+            navigationControl.Display(4);
+            displayingTab = 4;
+            navigationButton.highlight(lb_settings);
+        }
     }   
 }

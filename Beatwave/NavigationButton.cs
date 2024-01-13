@@ -52,25 +52,36 @@ namespace Beatwave
                 pictureBoxes[0].Image = Properties.Resources.home_selected1;
                 pictureBoxes[1].Image = Properties.Resources.search_unselected;
                 pictureBoxes[2].Image = Properties.Resources.playlist_unselected;
+                pictureBoxes[3].Image = Properties.Resources.settings;
             }
             if (selectedLabel.Text == "Tìm kiếm")
             {
                 pictureBoxes[0].Image = Properties.Resources.home_unselected;
                 pictureBoxes[1].Image = Properties.Resources.search_selected;
                 pictureBoxes[2].Image = Properties.Resources.playlist_unselected;
+                pictureBoxes[3].Image = Properties.Resources.settings;
             }
             if (selectedLabel.Text == "Playlist")
             {
                 pictureBoxes[0].Image = Properties.Resources.home_unselected;
                 pictureBoxes[1].Image = Properties.Resources.search_unselected;
                 pictureBoxes[2].Image = Properties.Resources.playlist_selected;
+                pictureBoxes[3].Image = Properties.Resources.settings;
             }
             if (selectedLabel.Text == "Beatwave")
             {
                 pictureBoxes[0].Image = Properties.Resources.home_unselected;
                 pictureBoxes[1].Image = Properties.Resources.search_unselected;
                 pictureBoxes[2].Image = Properties.Resources.playlist_unselected;
+                pictureBoxes[3].Image = Properties.Resources.settings;
             }
+            if (selectedLabel.Text == "Cài đặt")
+            {
+                pictureBoxes[0].Image = Properties.Resources.home_unselected;
+                pictureBoxes[1].Image = Properties.Resources.search_unselected;
+                pictureBoxes[2].Image = Properties.Resources.playlist_unselected;
+                pictureBoxes[3].Image = Properties.Resources.settingsActive;
+            }    
         }
     }
 }

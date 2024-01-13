@@ -212,6 +212,12 @@
     <Compile Include="UserControlTabs\searchTab.Designer.cs">
       <DependentUpon>searchTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControlTabs\settingsTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlTabs\settingsTab.Designer.cs">
+      <DependentUpon>settingsTab.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlTabs\searchTab.resx">
       <DependentUpon>searchTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlTabs\settingsTab.resx">
+      <DependentUpon>settingsTab.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -351,6 +360,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\giphy.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settingsActive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

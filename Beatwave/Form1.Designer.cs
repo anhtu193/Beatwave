@@ -47,6 +47,8 @@
             this.play_button = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.wavegif = new System.Windows.Forms.PictureBox();
             this.navigation_panel = new System.Windows.Forms.Panel();
+            this.ptb_settings = new System.Windows.Forms.PictureBox();
+            this.lb_settings = new System.Windows.Forms.Label();
             this.ptb_playlist = new System.Windows.Forms.PictureBox();
             this.ptb_search = new System.Windows.Forms.PictureBox();
             this.ptb_home = new System.Windows.Forms.PictureBox();
@@ -69,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.play_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wavegif)).BeginInit();
             this.navigation_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_settings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_playlist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_search)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_home)).BeginInit();
@@ -144,7 +147,7 @@
             this.slider.AllowMouseDownEffects = false;
             this.slider.AllowMouseHoverEffects = false;
             this.slider.AllowScrollingAnimations = false;
-            this.slider.AllowScrollKeysDetection = true;
+            this.slider.AllowScrollKeysDetection = false;
             this.slider.AllowScrollOptionsMenu = true;
             this.slider.AllowShrinkingOnFocusLost = false;
             this.slider.BackColor = System.Drawing.Color.Transparent;
@@ -385,6 +388,8 @@
             // navigation_panel
             // 
             this.navigation_panel.BackColor = System.Drawing.Color.Black;
+            this.navigation_panel.Controls.Add(this.ptb_settings);
+            this.navigation_panel.Controls.Add(this.lb_settings);
             this.navigation_panel.Controls.Add(this.ptb_playlist);
             this.navigation_panel.Controls.Add(this.ptb_search);
             this.navigation_panel.Controls.Add(this.ptb_home);
@@ -396,6 +401,28 @@
             this.navigation_panel.Name = "navigation_panel";
             this.navigation_panel.Size = new System.Drawing.Size(267, 946);
             this.navigation_panel.TabIndex = 1;
+            // 
+            // ptb_settings
+            // 
+            this.ptb_settings.Image = global::Beatwave.Properties.Resources.settings;
+            this.ptb_settings.Location = new System.Drawing.Point(47, 680);
+            this.ptb_settings.Name = "ptb_settings";
+            this.ptb_settings.Size = new System.Drawing.Size(32, 37);
+            this.ptb_settings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptb_settings.TabIndex = 5;
+            this.ptb_settings.TabStop = false;
+            // 
+            // lb_settings
+            // 
+            this.lb_settings.AutoSize = true;
+            this.lb_settings.Font = new System.Drawing.Font("Nunito Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_settings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.lb_settings.Location = new System.Drawing.Point(92, 684);
+            this.lb_settings.Name = "lb_settings";
+            this.lb_settings.Size = new System.Drawing.Size(81, 28);
+            this.lb_settings.TabIndex = 4;
+            this.lb_settings.Text = "Cài đặt";
+            this.lb_settings.Click += new System.EventHandler(this.lb_settings_Click);
             // 
             // ptb_playlist
             // 
@@ -443,6 +470,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 224);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -552,6 +580,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.play_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wavegif)).EndInit();
             this.navigation_panel.ResumeLayout(false);
+            this.navigation_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_settings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_playlist)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_search)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_home)).EndInit();
@@ -591,6 +621,8 @@
         private System.Windows.Forms.Label songTitle;
         private System.Windows.Forms.Label songArtist;
         private System.Windows.Forms.PictureBox wavegif;
+        private System.Windows.Forms.PictureBox ptb_settings;
+        private System.Windows.Forms.Label lb_settings;
     }
 }
 
