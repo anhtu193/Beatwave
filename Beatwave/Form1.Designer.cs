@@ -485,7 +485,7 @@
             this.lb_playlist.Name = "lb_playlist";
             this.lb_playlist.Size = new System.Drawing.Size(194, 76);
             this.lb_playlist.TabIndex = 2;
-            this.lb_playlist.Text = "Playlist";
+            this.lb_playlist.Text = "Thư viện";
             this.lb_playlist.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lb_playlist.Click += new System.EventHandler(this.lb_playlist_Click);
             // 
@@ -563,6 +563,7 @@
             this.Controls.Add(this.navigation_panel);
             this.Controls.Add(this.player_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.ShowIcon = false;

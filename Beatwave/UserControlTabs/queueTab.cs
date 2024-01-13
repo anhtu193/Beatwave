@@ -80,7 +80,7 @@ namespace Beatwave.UserControlTabs
         {
             if (sender is LongMusicItem musicItem)
             {
-                musicItem.SelectedPanel.BackColor = Color.DimGray; // Đổi màu nền khi chuột hover vào
+                musicItem.SelectedPanel.BackgroundColor = Color.DimGray; // Đổi màu nền khi chuột hover vào
             }
         }
     }

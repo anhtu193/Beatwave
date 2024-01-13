@@ -29,13 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(settingsTab));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.titleSettings = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ptb_folder = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.path = new System.Windows.Forms.Label();
             this.btn_openFolder = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.sourceCode = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_folder)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,11 +121,11 @@
             this.btn_openFolder.ColorContrastOnClick = 45;
             this.btn_openFolder.ColorContrastOnHover = 45;
             this.btn_openFolder.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.btn_openFolder.CustomizableEdges = borderEdges2;
+            borderEdges5.BottomLeft = true;
+            borderEdges5.BottomRight = true;
+            borderEdges5.TopLeft = true;
+            borderEdges5.TopRight = true;
+            this.btn_openFolder.CustomizableEdges = borderEdges5;
             this.btn_openFolder.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btn_openFolder.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btn_openFolder.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -183,15 +192,133 @@
             this.btn_openFolder.UseDefaultRadiusAndThickness = true;
             this.btn_openFolder.Click += new System.EventHandler(this.btn_openFolder_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Nunito ExtraBold", 14F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(19, 184);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(206, 33);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "About Beatwave";
+            // 
+            // sourceCode
+            // 
+            this.sourceCode.AutoSize = true;
+            this.sourceCode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sourceCode.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sourceCode.ForeColor = System.Drawing.Color.White;
+            this.sourceCode.Location = new System.Drawing.Point(20, 238);
+            this.sourceCode.Name = "sourceCode";
+            this.sourceCode.Size = new System.Drawing.Size(121, 28);
+            this.sourceCode.TabIndex = 4;
+            this.sourceCode.Text = "Source code";
+            this.sourceCode.Click += new System.EventHandler(this.sourceCode_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Nunito ExtraBold", 14F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(19, 289);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(123, 33);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "About Us";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Nunito ExtraBold", 14F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(18, 335);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(206, 33);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Lý Thanh Tú Anh";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Nunito ExtraBold", 14F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(291, 335);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(288, 33);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Phạm Nguyễn Nhật Duy";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label7.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(20, 381);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 28);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Github";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label8.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(113, 381);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(98, 28);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Facebook";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label9.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(385, 381);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(98, 28);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Facebook";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label10.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(292, 381);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(73, 28);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Github";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
             // settingsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(8)))), ((int)(((byte)(8)))));
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.btn_openFolder);
             this.Controls.Add(this.ptb_folder);
             this.Controls.Add(this.path);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.sourceCode);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.titleSettings);
             this.Name = "settingsTab";
@@ -210,5 +337,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label path;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton btn_openFolder;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label sourceCode;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }

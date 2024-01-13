@@ -30,6 +30,8 @@ namespace Beatwave
         homeTab HomeTab;
         queueTab QueueTab;
         settingsTab SettingsTab;
+        searchTab SearchTab;
+        playlistTab PlaylistTab;
 
         public event EventHandler<string> CurrentSongChanged;
         public MainForm()
@@ -86,12 +88,16 @@ namespace Beatwave
             HomeTab = new homeTab();
             QueueTab = new queueTab();
             SettingsTab = new settingsTab();
+            SearchTab = new searchTab();
+            PlaylistTab = new playlistTab();
+            PlaylistTab.MusicItemSelected += PlaylistTab_MusicItemSelected;
+            SearchTab.MusicItemSelected += SearchTab_MusicItemSelected;
             QueueTab.MusicItemSelected += QueueTab_MusicItemSelected;
             HomeTab.PlaylistUpdated += HomeTab_PlaylistUpdated;
             HomeTab.MusicItemSelected += HomeTab_MusicItemSelected;      
             SettingsTab.FolderPathSelected += SettingsTab_FolderPathSelected;
             List<UserControl> tabList = new List<UserControl>()
-            { HomeTab, new searchTab(), new playlistTab(), QueueTab, SettingsTab};
+            { HomeTab, SearchTab, PlaylistTab, QueueTab, SettingsTab};
             navigationControl = new NavigationControl(tabList, mainscreen_panel);
             navigationControl.Display(0);
             displayingTab = 0;          
@@ -118,6 +124,12 @@ namespace Beatwave
             QueueTab.SetPlaylist(songs);
             QueueTab.ResetSongList();
             QueueTab.DisplayMusicItems();
+
+            SearchTab.SetPlaylist(songs);
+            SearchTab.ResetSongList();
+            SearchTab.DisplayMusicItems();
+
+            PlaylistTab.getSongs(songs);
         }
 
         private void UpdateQueue(List<SongInfo> songs)
@@ -138,12 +150,21 @@ namespace Beatwave
             songCover.BorderRadius = 15;
         }
 
+        private void PlaylistTab_MusicItemSelected(object sender, string songPath)
+        {
+            PlayMusic(songPath);
+        }
         private void HomeTab_MusicItemSelected(object sender, string songPath)
         {
             PlayMusic(songPath);
         }
 
         private void QueueTab_MusicItemSelected(object sender, string songPath)
+        {
+            PlayMusic(songPath);
+        }
+
+        private void SearchTab_MusicItemSelected(object sender, string songPath)
         {
             PlayMusic(songPath);
         }

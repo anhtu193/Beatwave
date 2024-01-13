@@ -140,14 +140,11 @@ namespace Beatwave.UserControlTabs
                     musicItem.Width = 195; // Đặt chiều rộng của MusicItem tại đây (tuỳ chỉnh cho phù hợp)
                     musicItem.Margin = new Padding(0); // Đặt margin để tạo khoảng trống giữa các MusicItem
                     musicItem.CoverImage.BorderRadius = 20;
-                
                     musicItem.MusicItemSelected += MusicItem_MusicItemSelected; // Đăng ký sự kiện
                     // Thêm MusicItem vào FlowLayoutPanel
                     flowLayoutPanel.Controls.Add(musicItem);
                 }
-                
             }
-
         }
 
         private void MusicItem_MusicItemSelected(object sender, string songPath)
