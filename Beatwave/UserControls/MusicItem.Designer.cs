@@ -29,29 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.coverImage = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.lb_title = new System.Windows.Forms.Label();
             this.lb_artist = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.coverImage = new Bunifu.UI.WinForms.BunifuPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.coverImage)).BeginInit();
             this.SuspendLayout();
-            // 
-            // coverImage
-            // 
-            this.coverImage.AllowFocused = false;
-            this.coverImage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.coverImage.AutoSizeHeight = false;
-            this.coverImage.BorderRadius = 0;
-            this.coverImage.Image = global::Beatwave.Properties.Resources.obito;
-            this.coverImage.IsCircle = true;
-            this.coverImage.Location = new System.Drawing.Point(0, 0);
-            this.coverImage.Name = "coverImage";
-            this.coverImage.Size = new System.Drawing.Size(192, 192);
-            this.coverImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.coverImage.TabIndex = 0;
-            this.coverImage.TabStop = false;
-            this.coverImage.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Square;
-            this.coverImage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MusicItem_MouseClick);
             // 
             // lb_title
             // 
@@ -82,6 +65,23 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // coverImage
+            // 
+            this.coverImage.AllowFocused = false;
+            this.coverImage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.coverImage.AutoSizeHeight = false;
+            this.coverImage.BorderRadius = 0;
+            this.coverImage.Image = global::Beatwave.Properties.Resources.obito;
+            this.coverImage.IsCircle = true;
+            this.coverImage.Location = new System.Drawing.Point(0, 0);
+            this.coverImage.Name = "coverImage";
+            this.coverImage.Size = new System.Drawing.Size(192, 192);
+            this.coverImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.coverImage.TabIndex = 0;
+            this.coverImage.TabStop = false;
+            this.coverImage.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Square;
+            this.coverImage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MusicItem_MouseClick);
             // 
             // MusicItem
             // 

@@ -112,7 +112,7 @@
             this.playing_cover.BorderRadius = 0;
             this.playing_cover.Image = global::Beatwave.Properties.Resources.BeatwaveLogo;
             this.playing_cover.IsCircle = false;
-            this.playing_cover.Location = new System.Drawing.Point(18, 75);
+            this.playing_cover.Location = new System.Drawing.Point(9, 86);
             this.playing_cover.Name = "playing_cover";
             this.playing_cover.Size = new System.Drawing.Size(286, 286);
             this.playing_cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

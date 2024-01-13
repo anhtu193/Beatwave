@@ -194,6 +194,7 @@
             this.player.Size = new System.Drawing.Size(79, 62);
             this.player.TabIndex = 0;
             this.player.Visible = false;
+            this.player.CurrentItemChange += new AxWMPLib._WMPOCXEvents_CurrentItemChangeEventHandler(this.player_CurrentItemChange);
             // 
             // slider_volume
             // 
@@ -288,6 +289,7 @@
             this.btn_previous.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_previous.AutoSizeHeight = true;
             this.btn_previous.BorderRadius = 0;
+            this.btn_previous.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_previous.Image = global::Beatwave.Properties.Resources.previous;
             this.btn_previous.IsCircle = true;
             this.btn_previous.Location = new System.Drawing.Point(904, 37);
@@ -297,6 +299,7 @@
             this.btn_previous.TabIndex = 1;
             this.btn_previous.TabStop = false;
             this.btn_previous.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Square;
+            this.btn_previous.Click += new System.EventHandler(this.btn_previous_Click);
             // 
             // btn_playmode
             // 
@@ -339,6 +342,7 @@
             this.btn_next.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_next.AutoSizeHeight = true;
             this.btn_next.BorderRadius = 0;
+            this.btn_next.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_next.Image = global::Beatwave.Properties.Resources.next;
             this.btn_next.IsCircle = true;
             this.btn_next.Location = new System.Drawing.Point(1047, 37);
@@ -348,6 +352,7 @@
             this.btn_next.TabIndex = 1;
             this.btn_next.TabStop = false;
             this.btn_next.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Square;
+            this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
             // 
             // play_button
             // 

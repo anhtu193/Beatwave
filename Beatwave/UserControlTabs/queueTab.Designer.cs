@@ -28,24 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.title = new System.Windows.Forms.Label();
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // label1
+            // title
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(738, 660);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(517, 91);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Queue tab nè";
+            this.title.AutoSize = true;
+            this.title.Font = new System.Drawing.Font("Nunito ExtraBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title.ForeColor = System.Drawing.Color.White;
+            this.title.Location = new System.Drawing.Point(25, 20);
+            this.title.Name = "title";
+            this.title.Size = new System.Drawing.Size(277, 38);
+            this.title.TabIndex = 4;
+            this.title.Text = "DANH SÁCH PHÁT";
+            // 
+            // flowLayoutPanel
+            // 
+            this.flowLayoutPanel.AutoScroll = true;
+            this.flowLayoutPanel.Location = new System.Drawing.Point(24, 61);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(1298, 677);
+            this.flowLayoutPanel.TabIndex = 5;
             // 
             // queueTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Controls.Add(this.label1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(8)))), ((int)(((byte)(8)))));
+            this.Controls.Add(this.flowLayoutPanel);
+            this.Controls.Add(this.title);
             this.Name = "queueTab";
             this.Size = new System.Drawing.Size(1270, 738);
             this.ResumeLayout(false);
@@ -55,6 +67,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label title;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
     }
 }

@@ -22,11 +22,9 @@ namespace Beatwave.UserControlTabs
         bool isPlaying = false;
         private int rotationAngle = 0;
         private Timer rotationTimer;
-        private Bitmap originalImage; // Lưu trữ ảnh gốc
+        private Bitmap originalImage;
         private Bitmap rotatedImage;
         private int lastStoppedAngle = 0;
-
-        List<SongInfo> homeTabQueue = new List<SongInfo>();
 
         public homeTab()
         {
@@ -34,6 +32,30 @@ namespace Beatwave.UserControlTabs
             loadSongs();
             DisplayMusicItems();
             InitializePlayingSongItem();
+        }
+
+        public void UpdateUI(bool isPlaying, SongInfo songInfo)
+        {          
+            if (songInfo.Cover != null && songInfo.Cover.Length > 0)
+            {
+                using (MemoryStream ms = new MemoryStream(songInfo.Cover))
+                {
+                    Image image = Image.FromStream(ms);
+                    playing_cover.Image = image;
+                }
+            }
+            originalImage = new Bitmap(playing_cover.Image);
+            isPlaying = true;
+            if (isPlaying == true)
+            {
+                label3.Visible = true;
+                playing_cover.BorderRadius = 110; // Đặt borderRadius để làm hình tròn
+                rotationAngle = 0;
+                rotationTimer.Start(); // Bắt đầu quay hình ảnh
+            }
+            playing_title.Text = songInfo.Title;
+            string durationString = songInfo.Duration.ToString(@"mm\:ss");
+            playing_artist_duration.Text = songInfo.Artist + " • " + durationString;          
         }
 
         protected virtual void OnPlaylistUpdated(List<SongInfo> songs)
@@ -121,7 +143,7 @@ namespace Beatwave.UserControlTabs
                 }
                 
             }
-            
+
         }
 
         private void MusicItem_MusicItemSelected(object sender, string songPath)
@@ -184,7 +206,6 @@ namespace Beatwave.UserControlTabs
 
         private void homeTab_Load(object sender, EventArgs e)
         {
-
             OnPlaylistUpdated(songsInfo);
         }
     }
